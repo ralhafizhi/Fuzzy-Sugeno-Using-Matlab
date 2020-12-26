@@ -1,0 +1,49 @@
+[System]
+Name='05-Prediksi Harga Penjualan Tanah'
+Type='sugeno'
+Version=2.0
+NumInputs=2
+NumOutputs=1
+NumRules=7
+AndMethod='min'
+OrMethod='max'
+ImpMethod='prod'
+AggMethod='sum'
+DefuzzMethod='wtaver'
+
+[Input1]
+Name='LUAS'
+Range=[0 300]
+NumMFs=3
+MF1='KECIL':'trapmf',[0 0 100 150]
+MF2='SEDANG':'trimf',[100 150 200]
+MF3='BESAR':'trapmf',[150 250 300 300]
+
+[Input2]
+Name='JARAK'
+Range=[0 800]
+NumMFs=3
+MF1='DEKAT':'trapmf',[0 0 300 500]
+MF2='SEDANG':'trimf',[300 500 750]
+MF3='JAUH':'trapmf',[500 750 800 800]
+
+[Output1]
+Name='HARGA'
+Range=[0 1]
+NumMFs=7
+MF1='162.000.000':'constant',[162000000]
+MF2='170.000.000':'constant',[170000000]
+MF3='180.000.000':'constant',[180000000]
+MF4='255.000.000':'constant',[255000000]
+MF5='270.000.000':'constant',[270000000]
+MF6='340.000.000':'constant',[340000000]
+MF7='360.000.000':'constant',[360000000]
+
+[Rules]
+3 3, 7 (1) : 1
+2 3, 5 (1) : 1
+2 2, 4 (1) : 1
+1 3, 3 (1) : 1
+1 2, 2 (1) : 1
+1 1, 1 (1) : 1
+3 2, 6 (1) : 1
